@@ -1,0 +1,26 @@
+{% extends "basic_app/base.html" %}
+	{% block body_block %}
+
+    <h5> You are logged in as <b>{{user}}<b> </h5>
+    <br>
+    <h5> Here are your photos:</h5>
+    <br>
+    <hr>
+
+    {% for photo in user.photos.all %}
+
+        <img src="{{MEDIA_URL}}{{photo.pic}}" width="200" height="200">
+        <a href="{{photo.pk}}">Photo No.{{photo.pk}} - {{photo.site}} </a>
+        <a  class="btn btn-success"  href="{% url 'basic_app:photo_delete' pk=photo.pk %}">Delete</a>
+
+        <p> {{ photo.Description }} </p>
+        <hr>
+
+    {% endfor %}
+
+
+
+
+
+
+	{% endblock body_block %}
